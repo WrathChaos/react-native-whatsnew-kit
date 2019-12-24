@@ -2,6 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Text, View, FlatList, Image, TouchableOpacity } from "react-native";
 import Modal from "react-native-modal";
+import styles, {
+  _container,
+  _buttonStyle,
+  _titleTextStyle,
+  _buttonTextStyle,
+  _textButtonTextStyle
+} from "./WhatsNewKit.style";
 
 const staticData = [
   {
@@ -27,10 +34,33 @@ const staticData = [
 ];
 
 const WhatsNewKit = props => {
-  const { data, ImageComponent, textButtonOnPress, onPress, isVisible } = props;
+  const {
+    data,
+    width,
+    title,
+    height,
+    onPress,
+    isVisible,
+    buttonText,
+    buttonStyle,
+    titleFontSize,
+    buttonFontSize,
+    titleFontColor,
+    titleTextStyle,
+    ImageComponent,
+    buttonTextStyle,
+    backgroundColor,
+    buttonFontColor,
+    textButtonValue,
+    textButtonOnPress,
+    textButtonTextStyle,
+    textButtonFontColor,
+    buttonBackgroundColor,
+    ...others
+  } = props;
 
   renderItem = data => {
-    const { item, index } = data;
+    const { item } = data;
     const { title, description, iconComponent, icon } = item;
     return (
       <View
@@ -67,72 +97,92 @@ const WhatsNewKit = props => {
     );
   };
 
-  return (
-    <View>
-      <Modal isVisible={isVisible} {...props}>
-        <View
-          style={{
-            height: null,
-            borderRadius: 16,
-            backgroundColor: "#fdfdfd"
-          }}
-        >
-          <View
-            style={{
-              margin: 32,
-              alignItems: "center",
-              justifyContent: "center"
-            }}
-          >
-            <Text style={{ fontSize: 32, fontWeight: "700" }}>WhatsNewKit</Text>
-            <FlatList
-              data={data}
-              scrollEnabled={false}
-              style={{ width: "100%" }}
-              renderItem={renderItem.bind(this)}
-              {...props}
-            />
+  renderTitleView = () => (
+    <Text
+      style={titleTextStyle || _titleTextStyle(titleFontSize, titleFontColor)}
+    >
+      {title}
+    </Text>
+  );
 
-            <TouchableOpacity
-              style={{ marginTop: 32 }}
-              onPress={textButtonOnPress}
-            >
-              <Text style={{ color: "#3da7d2", fontWeight: "500" }}>
-                Read more
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{
-                height: 50,
-                marginTop: 8,
-                width: "100%",
-                borderRadius: 8,
-                alignItems: "center",
-                justifyContent: "center",
-                backgroundColor: "#3da7d2"
-              }}
-              onPress={onPress}
-            >
-              <Text
-                style={{ color: "#fdfdfd", fontSize: 16, fontWeight: "500" }}
-              >
-                Awesome!
-              </Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </Modal>
+  renderList = () => (
+    <FlatList
+      data={data}
+      scrollEnabled={false}
+      style={styles.listStyle}
+      renderItem={renderItem.bind(this)}
+      {...props}
+    />
+  );
+
+  renderFooterButtons = () => (
+    <View style={styles.footerButtonsContainer}>
+      <TouchableOpacity
+        style={styles.textButtonStyle}
+        onPress={textButtonOnPress}
+      >
+        <Text
+          style={
+            textButtonTextStyle || _textButtonTextStyle(textButtonFontColor)
+          }
+        >
+          {textButtonValue}
+        </Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={buttonStyle || _buttonStyle(buttonBackgroundColor)}
+        onPress={onPress}
+      >
+        <Text
+          style={
+            buttonTextStyle || _buttonTextStyle(buttonFontColor, buttonFontSize)
+          }
+        >
+          {buttonText}
+        </Text>
+      </TouchableOpacity>
     </View>
+  );
+
+  return (
+    <Modal isVisible={isVisible} {...others}>
+      <View style={_container(height, width, backgroundColor)}>
+        <View style={styles.containerGlue}>
+          {renderTitleView()}
+          {renderList()}
+          {renderFooterButtons()}
+        </View>
+      </View>
+    </Modal>
   );
 };
 
 WhatsNewKit.propTypes = {
-  data: PropTypes.array
+  data: PropTypes.array,
+  title: PropTypes.string,
+  buttonText: PropTypes.string,
+  titleFontSize: PropTypes.number,
+  titleFontColor: PropTypes.string,
+  buttonFontSize: PropTypes.number,
+  buttonFontColor: PropTypes.string,
+  textButtonValue: PropTypes.string,
+  textButtonFontColor: PropTypes.string,
+  buttonBackgroundColor: PropTypes.string
 };
 
 WhatsNewKit.defaultProps = {
   data: staticData,
-  ImageComponent: Image
+  titleFontSize: 32,
+  buttonFontSize: 16,
+  title: "WhatsNewKit",
+  ImageComponent: Image,
+  buttonText: "Awesome!",
+  titleFontColor: "#000",
+  buttonFontColor: "#fdfdfd",
+  backgroundColor: "#fdfdfd",
+  textButtonValue: "Read more",
+  textButtonFontColor: "#3da7d2",
+  buttonBackgroundColor: "#3da7d2"
 };
 
 export default WhatsNewKit;
