@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   SafeAreaView,
   StyleSheet,
@@ -16,13 +16,14 @@ import WhatsNewKit from "./lib/src/WhatsNewKit";
  */
 
 const App = () => {
+  const [isVisible, setIsVisible] = useState(true);
   return (
     <>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
         <WhatsNewKit
-          isVisible
-          onBackdropPress={() => this.setState({ isVisible: false })}
+          isVisible={isVisible}
+          onBackdropPress={() => setIsVisible(false)}
         />
       </SafeAreaView>
     </>

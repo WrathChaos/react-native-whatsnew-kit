@@ -27,7 +27,7 @@ const staticData = [
 ];
 
 const WhatsNewKit = props => {
-  const { data, ImageComponent, customImageComponent, isVisible } = props;
+  const { data, ImageComponent, textButtonOnPress, onPress, isVisible } = props;
 
   renderItem = data => {
     const { item, index } = data;
@@ -90,9 +90,13 @@ const WhatsNewKit = props => {
               scrollEnabled={false}
               style={{ width: "100%" }}
               renderItem={renderItem.bind(this)}
+              {...props}
             />
 
-            <TouchableOpacity style={{ marginTop: 32 }}>
+            <TouchableOpacity
+              style={{ marginTop: 32 }}
+              onPress={textButtonOnPress}
+            >
               <Text style={{ color: "#3da7d2", fontWeight: "500" }}>
                 Read more
               </Text>
@@ -107,6 +111,7 @@ const WhatsNewKit = props => {
                 justifyContent: "center",
                 backgroundColor: "#3da7d2"
               }}
+              onPress={onPress}
             >
               <Text
                 style={{ color: "#fdfdfd", fontSize: 16, fontWeight: "500" }}
