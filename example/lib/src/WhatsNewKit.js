@@ -1,6 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Text, View, FlatList, Image, TouchableOpacity } from "react-native";
+import {
+  Text,
+  View,
+  FlatList,
+  SafeAreaView,
+  Image,
+  TouchableOpacity
+} from "react-native";
 import Modal from "react-native-modal";
 import styles, {
   _container,
@@ -42,6 +49,7 @@ const WhatsNewKit = props => {
     onPress,
     isVisible,
     buttonText,
+    fullScreen,
     buttonStyle,
     titleFontSize,
     buttonFontSize,
@@ -145,14 +153,22 @@ const WhatsNewKit = props => {
   );
 
   return (
-    <Modal isVisible={isVisible} {...others}>
-      <View style={_container(height, width, backgroundColor)}>
+    <Modal
+      isVisible={isVisible}
+      style={{
+        margin: fullScreen ? 0 : null
+      }}
+      {...others}
+    >
+      <SafeAreaView
+        style={_container(height, width, backgroundColor, fullScreen)}
+      >
         <View style={styles.containerGlue}>
           {renderTitleView()}
           {renderList()}
           {renderFooterButtons()}
         </View>
-      </View>
+      </SafeAreaView>
     </Modal>
   );
 };
@@ -160,6 +176,7 @@ const WhatsNewKit = props => {
 WhatsNewKit.propTypes = {
   data: PropTypes.array,
   title: PropTypes.string,
+  fullScreen: PropTypes.bool,
   buttonText: PropTypes.string,
   titleFontSize: PropTypes.number,
   titleFontColor: PropTypes.string,
@@ -176,6 +193,7 @@ WhatsNewKit.defaultProps = {
   buttonFontSize: 16,
   title: "WhatsNewKit",
   ImageComponent: Image,
+  fullScreen: false,
   buttonText: "Awesome!",
   titleFontColor: "#000",
   buttonFontColor: "#fdfdfd",

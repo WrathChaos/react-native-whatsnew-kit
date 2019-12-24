@@ -1,11 +1,13 @@
 import { Dimensions } from "react-native";
 const { width: ScreenWidth } = Dimensions.get("window");
 
-export const _container = (height, width, backgroundColor) => ({
+export const _container = (height, width, backgroundColor, fullScreen) => ({
   width,
   height,
   backgroundColor,
-  borderRadius: 16
+  borderRadius: 16,
+  alignItems: fullScreen ? "center" : null,
+  justifyContent: fullScreen ? "center" : null
 });
 
 export const _titleTextStyle = (fontSize, color) => ({
