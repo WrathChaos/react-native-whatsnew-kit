@@ -10,7 +10,9 @@ import {
 } from "react-native";
 import Modal from "react-native-modal";
 import styles, {
+  _iconStyle,
   _container,
+  _modalStyle,
   _buttonStyle,
   _titleTextStyle,
   _buttonTextStyle,
@@ -48,6 +50,8 @@ const WhatsNewKit = props => {
     height,
     onPress,
     isVisible,
+    iconWidth,
+    iconHeight,
     buttonText,
     fullScreen,
     buttonStyle,
@@ -61,6 +65,8 @@ const WhatsNewKit = props => {
     buttonFontColor,
     textButtonValue,
     textButtonOnPress,
+    itemDescTextStyle,
+    itemTitleTextStyle,
     textButtonTextStyle,
     textButtonFontColor,
     buttonBackgroundColor,
@@ -71,35 +77,22 @@ const WhatsNewKit = props => {
     const { item } = data;
     const { title, description, iconComponent, icon } = item;
     return (
-      <View
-        style={{
-          marginTop: 32,
-          flexDirection: "row",
-          alignItems: "center"
-        }}
-      >
-        <View
-          style={{
-            alignItems: "center",
-            justifyContent: "center",
-            marginRight: 16
-          }}
-        >
-          {iconComponent ? (
-            iconComponent
-          ) : (
+      <View style={styles.itemContainer}>
+        <View style={styles.iconContainer}>
+          {iconComponent || (
             <ImageComponent
-              style={{
-                width: 50,
-                height: 50
-              }}
               source={icon}
+              style={_iconStyle(iconHeight, iconWidth)}
             />
           )}
         </View>
-        <View style={{ width: "80%", flexDirection: "column" }}>
-          <Text style={{ fontSize: 18, fontWeight: "500" }}>{title}</Text>
-          <Text style={{ marginTop: 5, color: "#313232" }}>{description}</Text>
+        <View style={styles.itemContextContainer}>
+          <Text style={itemTitleTextStyle || styles.itemTitleTextStyle}>
+            {title}
+          </Text>
+          <Text style={itemDescTextStyle || styles.itemDescTextStyle}>
+            {description}
+          </Text>
         </View>
       </View>
     );
@@ -153,13 +146,7 @@ const WhatsNewKit = props => {
   );
 
   return (
-    <Modal
-      isVisible={isVisible}
-      style={{
-        margin: fullScreen ? 0 : null
-      }}
-      {...others}
-    >
+    <Modal isVisible={isVisible} style={_modalStyle(fullScreen)} {...others}>
       <SafeAreaView
         style={_container(height, width, backgroundColor, fullScreen)}
       >
@@ -188,12 +175,14 @@ WhatsNewKit.propTypes = {
 };
 
 WhatsNewKit.defaultProps = {
+  iconWidth: 50,
+  iconHeight: 50,
   data: staticData,
+  fullScreen: false,
   titleFontSize: 32,
   buttonFontSize: 16,
   title: "WhatsNewKit",
   ImageComponent: Image,
-  fullScreen: false,
   buttonText: "Awesome!",
   titleFontColor: "#000",
   buttonFontColor: "#fdfdfd",

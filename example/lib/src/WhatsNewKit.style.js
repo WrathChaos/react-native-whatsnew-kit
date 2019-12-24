@@ -1,6 +1,11 @@
 import { Dimensions } from "react-native";
 const { width: ScreenWidth } = Dimensions.get("window");
 
+export const _iconStyle = (height, width) => ({
+  width,
+  height
+});
+
 export const _container = (height, width, backgroundColor, fullScreen) => ({
   width,
   height,
@@ -37,6 +42,15 @@ export const _buttonTextStyle = (color, fontSize) => ({
   fontWeight: "500"
 });
 
+export const _itemTitleTextStyle = () => ({
+  fontSize: 18,
+  fontWeight: "500"
+});
+
+export const _modalStyle = fullScreen => ({
+  margin: fullScreen ? 0 : null
+});
+
 export default {
   containerGlue: {
     margin: 32,
@@ -52,5 +66,27 @@ export default {
   },
   textButtonStyle: {
     marginTop: 32
+  },
+  itemContainer: {
+    marginTop: 32,
+    flexDirection: "row",
+    alignItems: "center"
+  },
+  iconContainer: {
+    marginRight: 16,
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  itemContextContainer: {
+    width: "80%",
+    flexDirection: "column"
+  },
+  itemTitleTextStyle: {
+    fontSize: 18,
+    fontWeight: "500"
+  },
+  itemDescTextStyle: {
+    marginTop: 5,
+    color: "#313232"
   }
 };
