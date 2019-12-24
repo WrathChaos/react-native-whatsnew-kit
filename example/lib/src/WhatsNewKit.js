@@ -12,7 +12,6 @@ import Modal from "react-native-modal";
 import styles, {
   _iconStyle,
   _container,
-  _modalStyle,
   _buttonStyle,
   _titleTextStyle,
   _buttonTextStyle,
@@ -146,7 +145,11 @@ const WhatsNewKit = props => {
   );
 
   return (
-    <Modal isVisible={isVisible} style={_modalStyle(fullScreen)} {...others}>
+    <Modal
+      isVisible={isVisible}
+      style={fullScreen && styles.fullScreenModalStyle}
+      {...others}
+    >
       <SafeAreaView
         style={_container(height, width, backgroundColor, fullScreen)}
       >

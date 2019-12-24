@@ -47,10 +47,6 @@ export const _itemTitleTextStyle = () => ({
   fontWeight: "500"
 });
 
-export const _modalStyle = fullScreen => ({
-  margin: fullScreen ? 0 : null
-});
-
 export default {
   containerGlue: {
     margin: 32,
@@ -88,5 +84,8 @@ export default {
   itemDescTextStyle: {
     marginTop: 5,
     color: "#313232"
+  },
+  fullScreenModalStyle: {
+    margin: 0
   }
 };
