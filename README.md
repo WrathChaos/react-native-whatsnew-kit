@@ -2,7 +2,7 @@
 
 [![Battle Tested ✅](https://img.shields.io/badge/-Battle--Tested%20%E2%9C%85-03666e?style=for-the-badge)](https://github.com/WrathChaos/react-native-whatsnew-kit)
 
-[![React Native Library Boiler Plate](https://img.shields.io/badge/-React%20Native%20Library%20Boilerplate-lightgrey?style=for-the-badge)](https://github.com/WrathChaos/react-native-whatsnew-kit)
+[![Plug & Play, beautiful WhatsNewKit for React Native](https://img.shields.io/badge/-Plug%20%26%20Play%2C%20beautiful%20WhatsNewKit%20for%20React%20Native-lightgrey?style=for-the-badge)](https://github.com/WrathChaos/react-native-whatsnew-kit)
 
 [![npm version](https://img.shields.io/npm/v/react-native-whatsnew-kit.svg?style=for-the-badge)](https://www.npmjs.com/package/react-native-whatsnew-kit)
 [![npm](https://img.shields.io/npm/dt/react-native-whatsnew-kit.svg?style=for-the-badge)](https://www.npmjs.com/package/react-native-whatsnew-kit)
@@ -117,7 +117,6 @@ Data **MUST** be with this format. If you want to use your own iconComponent ins
 - [x] ~~LICENSE~~
 - [ ] Animations
 - [ ] Write an article about the lib on Medium
-
 
 ## Credits
 
