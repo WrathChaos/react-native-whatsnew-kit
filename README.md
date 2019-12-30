@@ -44,7 +44,12 @@ import WhatsNew from "react-native-whatsnew-kit";
 ## Basic Usage
 
 ```jsx
-<WhatsNew data={data} isVisible={isVisible} ImageComponent={FastImage} onBackdropPress={() => setIsVisible(false)} />
+<WhatsNew
+  data={data}
+  fullScreen={false}
+  isVisible={isVisible}
+  onBackdropPress={() => setIsVisible(false)}
+/>
 ```
 
 ## Data Array Format
