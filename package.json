@@ -1,6 +1,6 @@
 {
   "name": "react-native-whatsnew-kit",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Plug & Play, beautiful WhatsNewKit for React Native",
   "keywords": [
     "FreakyCoder",
@@ -19,6 +19,9 @@
   "repository": "git@github.com:WrathChaos/react-native-whatsnew-kit.git",
   "author": "Kuray (FreakyCoder) <kurayogun@gmail.com>",
   "license": "MIT",
+  "dependencies": {
+    "react-native-modal": ">= 11.5.3"
+  },
   "peerDependencies": {
     "react": ">= 16.x.x",
     "react-native": ">= 0.55.x",
